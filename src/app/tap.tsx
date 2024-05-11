@@ -1,8 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faSearch,
+  faBowlFood,
   faHome,
   faUserCircle,
+  faCalendarDays,
+  faClock,
 } from "@fortawesome/free-solid-svg-icons";
 
 const tabs = [
@@ -13,11 +15,21 @@ const tabs = [
   },
   {
     route: "/meals",
-    icon: faSearch,
+    icon: faBowlFood,
     label: "식단표",
   },
   {
-    route: "/login",
+    route: "/schedules",
+    icon: faCalendarDays,
+    label: "시간표",
+  },
+  {
+    route: "/test",
+    icon: faClock,
+    label: "타이머",
+  },
+  {
+    route: "/intro",
     icon: faUserCircle,
     label: "계정",
   },
