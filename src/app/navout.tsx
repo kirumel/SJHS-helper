@@ -18,7 +18,7 @@ export default function NavOut() {
               }`}
             >
               <FontAwesomeIcon className="tab-icon" icon={tab.icon} />
-              <p>{tab.label}</p>
+              <p className="tab-label">{tab.label}</p>
             </div>
           </Link>
         ))}

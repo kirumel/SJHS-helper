@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export async function getMeal() {
+export async function getonemeal() {
   const meals = [];
-  for (let i = 0; i < 7; i++) {
+  for (let i = 0; i < 1; i++) {
     const date = new Date();
     date.setDate(date.getDate() + i);
 
