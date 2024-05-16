@@ -24,14 +24,14 @@ const tabs = [
     label: "시간표",
   },
   {
-    route: "/test",
+    route: "/timer",
     icon: faClock,
     label: "타이머",
   },
   {
-    route: "/intro",
+    route: "/setting",
     icon: faUserCircle,
-    label: "계정",
+    label: "마이",
   },
 ];
 

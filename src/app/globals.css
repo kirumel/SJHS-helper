@@ -5,7 +5,23 @@ body {
   margin-bottom: 80px;
   background-color: rgb(245, 245, 250);
 }
-
+.signinbutton {
+  background-color: white;
+  border-radius: 10px;
+  border: 0px;
+  font-size: 11px;
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 700;
+}
+.text-decoration-none {
+  text-decoration: none;
+}
+.white {
+  color: white;
+}
+.snowgray {
+  color: rgb(118, 121, 124);
+}
 .nav {
   padding-left: 15px;
   display: flex;
@@ -89,7 +105,7 @@ body {
 .hello {
   font-size: 11px;
   font-family: "Noto Sans KR", sans-serif;
-  font-weight: 700;
+  font-weight: 500;
   align-items: center;
   justify-content: space-between;
   margin-top: 15px;
@@ -105,6 +121,7 @@ body {
   margin-top: 13px;
   margin-bottom: 13px;
 }
+
 .scroll-container {
   overflow-x: auto;
   white-space: nowrap;
@@ -298,11 +315,10 @@ body {
   font-size: 16px;
 }
 .icon-gt {
-  color: rgb(118, 121, 124);
   background: none;
   border: none;
   font-family: "Noto Sans KR", sans-serif;
-  font-weight: 900;
+  font-weight: 800;
   font-size: 16px;
 }
 .home-layout {

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import getschedules from "../scripts/getschedules";
+import { useSession } from "next-auth/react";
 
 interface ScheduleItem {
   status: string;
@@ -14,6 +15,7 @@ interface ScheduleItem {
 export default function Meals() {
   const [schedules, setSchedules] = useState<ScheduleItem[]>([]);
   const day = ["월", "화", "수", "목", "금"];
+  const { data: session } = useSession();
 
   useEffect(() => {
     const storedSchedules = localStorage.getItem("schedules");
@@ -38,7 +40,7 @@ export default function Meals() {
   const handleSlotEdit = (
     dayIndex: number,
     subjectIndex: number,
-    newValue: string,
+    newValue: string
   ) => {
     const updatedSchedules = [...schedules];
     updatedSchedules[dayIndex].data![subjectIndex] = newValue; // 새 값으로 업데이트
@@ -49,8 +51,8 @@ export default function Meals() {
   };
 
   return (
-    <div className="timetable">
-      <p>서현웅님의 이번주 시간표</p>
+    <div>
+      <p>{session?.user?.name}님의 시간표</p>
       <div className="subject-row">
         {schedules.map((schedule, dayIndex) => (
           <div key={dayIndex} className="subject">

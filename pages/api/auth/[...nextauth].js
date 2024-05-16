@@ -2,6 +2,8 @@ import NextAuth from "next-auth";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { PrismaClient } from "@prisma/client";
 import NaverProvider from "next-auth/providers/naver";
+import KakaoProvider from "next-auth/providers/kakao";
+import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
 import mysql from "mysql2/promise";
@@ -13,6 +15,21 @@ export const authOptions = {
       clientId: process.env.NAVER_CLIENT_ID,
       clientSecret: process.env.NAVER_CLIENT_SECRET,
     }),
+    KakaoProvider({
+      clientId: process.env.KAKAO_CLIENT_ID,
+      clientSecret: process.env.KAKAO_CLIENT_SECRET,
+    }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      authorization: {
+        params: {
+          prompt: "consent",
+          access_type: "offline",
+          response_type: "code",
+        },
+      },
+    }),
     CredentialsProvider({
       name: "credentials",
       credentials: {
@@ -23,8 +40,8 @@ export const authOptions = {
         const connection = await mysql.createConnection({
           host: "localhost",
           user: "root",
-          password: "dnd153973",
-          database: "altisto",
+          password: "",
+          database: "",
         });
 
         try {
@@ -82,7 +99,7 @@ export const authOptions = {
     },
   },
 
-  secret: "dkfxltmxhfhrmdlszl",
+  secret: "tjdwl123123123",
   adapter: PrismaAdapter(prisma),
 };
 

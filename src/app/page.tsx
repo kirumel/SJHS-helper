@@ -3,20 +3,13 @@ import Homeschedule from "./homeschedules";
 import Hometimetable from "./hometimetable";
 import maintaps from "./maintabs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Hello from "./hellohome";
 
 export default function home() {
-  const user = {
-    name: "서현웅",
-  };
   return (
     <>
       <div className="home-layout">
-        <div className="hello">
-          <p>
-            안녕하세요 {user.name}님!👋 <br /> 무엇을 도와드릴까요?
-          </p>
-          <button className="morebutton"></button>
-        </div>
+        <Hello />
         <div className="main-container">
           <div className="event-imgbox">
             <Link
@@ -24,7 +17,7 @@ export default function home() {
               className="main-container-display margin-bottom-15"
             >
               <p>교내 행사 및 홍보</p>
-              <button className="icon-gt">&gt;</button>
+              <button className="icon-gt snowgray">&gt;</button>
             </Link>
             <div className="main-event-img"></div>
           </div>

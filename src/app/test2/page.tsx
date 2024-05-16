@@ -1,14 +1,24 @@
-'use client'
+"use client";
+import { useSession, signIn, signOut } from "next-auth/react";
 
-
-import { useEffect, useState } from "react"
-import {getnotice} from "../../../getnotice"
-export default async function notice(){
- const notice = await getnotice();
-
-    
-    
+export default function Component() {
+  const { data: session } = useSession();
+  console.log(session);
+  if (session) {
     return (
-        <><div></div></>
-    )
+      <>
+        Signed in as {session.user?.name} <br />
+        <button onClick={() => signOut()}>Sign out</button>
+      </>
+    );
+  }
+
+  return (
+    <>
+      Not signed in <br />
+      <button className="signinbutton" onClick={() => signIn()}>
+        Sign in
+      </button>
+    </>
+  );
 }
