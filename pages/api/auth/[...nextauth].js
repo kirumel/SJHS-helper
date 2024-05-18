@@ -86,9 +86,14 @@ export const authOptions = {
     //user변수는 DB의 유저정보담겨있고 token.user에 뭐 저장하면 jwt에 들어갑니다.
     jwt: async ({ token, user }) => {
       if (user) {
-        token.user = {};
-        token.user.name = user.name;
-        token.user.email = user.email;
+        token.user = {
+          name: user.name,
+          email: user.email,
+          image: user.image,
+          role: user.role,
+          grade: user.grade,
+          class: user.class, // Change 'class' to 'userClass' or another suitable name
+        };
       }
       return token;
     },
@@ -97,6 +102,7 @@ export const authOptions = {
       session.user = token.user;
       return session;
     },
+    
   },
 
   secret: "tjdwl123123123",
