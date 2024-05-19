@@ -5,7 +5,7 @@ import maintaps from "./maintabs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Hello from "./hellohome";
 
-export default function home() {
+export default async function home() {
   return (
     <>
       <div className="home-layout">

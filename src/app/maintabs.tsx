@@ -28,7 +28,7 @@ const maintabs = [
     icon: faClock,
     label: "타이머",
   },
-  { route: "../test2", icon: faUserCircle, label: "계정" },
+  { route: "../test2", icon: faUserCircle, label: "마이" },
   { route: "../test", icon: faCalendarDays, label: "설정" },
 ];
 

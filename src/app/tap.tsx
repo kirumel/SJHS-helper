@@ -29,6 +29,11 @@ const tabs = [
     label: "타이머",
   },
   {
+    route: "/cafe",
+    icon: faClock,
+    label: "게시판",
+  },
+  {
     route: "/setting",
     icon: faUserCircle,
     label: "마이",

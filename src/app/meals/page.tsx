@@ -33,7 +33,7 @@ export default function Meals() {
   };
 
   if (isLoading) {
-    return <div className="loading">로딩중...</div>;
+    return <video className="로딩" src="/로딩.mp4" autoPlay muted loop />;
   }
 
   return (
@@ -85,7 +85,7 @@ export default function Meals() {
               </div>
             )}
           </div>
-        ) : null,
+        ) : null
       )}
     </>
   );

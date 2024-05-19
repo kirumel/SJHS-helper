@@ -3,13 +3,30 @@
 body {
   margin: 0;
   margin-bottom: 80px;
-  background-color: rgb(245, 245, 250);
+  background-color: #f5f5fa;
 }
-.profileimg{
-  width: 100px;
-  height: 100px;
-  border-radius: 5px;
 
+.profileimg {
+  width: 80px;
+  height: 80px;
+  border-radius: 100px;
+}
+.profile {
+  display: flex;
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 600;
+  justify-content: center;
+}
+.profile div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
+  margin-left: 20px;
+}
+.profile h2,
+.profile p {
+  margin: 0;
 }
 .signinbutton {
   background-color: white;
@@ -103,9 +120,9 @@ body {
 
 .morebutton {
   background-color: white;
-  height: 30px;
-  border: 1px solid #ffffff;
-  width: 30px;
+  height: 33px;
+  border: 2px solid #e2e6ff;
+  width: 33px;
   border-radius: 100px;
 }
 .hello {
@@ -117,8 +134,8 @@ body {
   margin-top: 15px;
   display: flex;
   background-color: #8a9bff;
-  padding-left: 18px;
-  padding-right: 18px;
+  padding-left: 19px;
+  padding-right: 19px;
   border-radius: 16px;
   letter-spacing: 0.5px;
   color: white;
@@ -229,7 +246,7 @@ body {
 }
 .comment-img {
   width: 100%;
-  background-image: url("/comment.png");
+  background-image: url("/logofull.jpg");
   height: 30vmin;
   background-position: center;
   border-radius: 16px;
@@ -371,7 +388,6 @@ body {
 
 .subject-row {
   display: flex;
-  background-color: rgb(255, 255, 255);
   border-radius: 10px;
   padding-top: 5px;
   padding-left: 10px;
@@ -397,7 +413,6 @@ body {
 }
 
 .slot1 {
-  background-color: white;
   text-align: center;
   font-size: 10px;
   margin: 5px;
@@ -406,7 +421,6 @@ body {
   font-size: 12px;
   padding: 3px;
   border: 1px solid rgb(201, 201, 201);
-  background-color: white;
   text-align: center;
   display: flex;
   height: 50px;
@@ -515,4 +529,14 @@ body {
   margin: 0px;
   font-family: "Noto Sans KR", sans-serif;
   font-weight: 700;
+}
+.insert {
+  padding: 30px;
+}
+.로딩 {
+  top: 50%;
+  left: 50%;
+  height: 80%;
+  transform: translate(-50%, -50%);
+  position: fixed;
 }

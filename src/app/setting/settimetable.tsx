@@ -64,7 +64,7 @@ export default function Meals() {
                   key={subjectIndex}
                   onDoubleClick={() => {
                     const newValue =
-                      prompt("새로운 내용을 입력하세요:", subject) || subject;
+                      prompt("시간표를 입력해주세요!", subject) || subject;
                     handleSlotEdit(dayIndex, subjectIndex, newValue); // 수정된 값 적용
                   }}
                 >
