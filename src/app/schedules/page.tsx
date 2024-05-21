@@ -72,7 +72,7 @@ export default function Meals() {
         index === currentDateIndex ? (
           <div className="dish" key={index}>
             <div className="dish-box">
-              <h2 className="dish-date">{schedule.date}</h2>
+              <h2 className="dish-date">시간표</h2>
               <p className="dish-icon">✏️</p> {/* 이모지가 추가된 부분 */}
             </div>
             {Array.isArray(schedule.data) ? (

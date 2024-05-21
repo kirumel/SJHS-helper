@@ -51,8 +51,9 @@ export default function Meals() {
   };
 
   return (
-    <div>
-      <p>{session?.user?.name}님의 시간표</p>
+    <div className="main-container">
+      <div style={{marginLeft: "20px", marginTop: "10px"}}><h2 style={{margin: "2px"}}>{session?.user?.name}님의</h2>
+      <h5 style={{margin: "2px" }}>시간표 🕒📖</h5></div>
       <div className="subject-row">
         {schedules.map((schedule, dayIndex) => (
           <div key={dayIndex} className="subject">

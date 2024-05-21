@@ -14,13 +14,13 @@ export default async function handler(req, res) {
     const { title, content, nickname, author } = req.body;
 
     if (!title) {
-      return res.status(400).json({ message: "제목이 비어있습니다" });
+      return res.status(400).json({ message: "이메일을 입력해주세요" });
     }
     if (!content) {
-      return res.status(400).json({ message: "내용이 비어있습니다" });
+      return res.status(400).json({ message: "비밀번호를 입력해주세요" });
     }
     if (!author) {
-      return res.status(400).json({ message: "로그인이 필요합니다" });
+      return res.status(400).json({ message: "이름을 입력해주세요" });
     }
     if (!nickname) {
       return res.status(400).json({ message: "닉네임을 설정해주세요" });
