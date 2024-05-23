@@ -14,18 +14,29 @@ interface ScheduleItem {
 export default function Meals() {
   const [schedules, setSchedules] = useState<ScheduleItem[]>([]);
   const [currentDateIndex, setCurrentDateIndex] = useState<number>(0);
-  let date = new Date();
-  let getday = date.getDate();
+  const [currentDay, setCurrentDay] = useState<number>(0);
 
   useEffect(() => {
     const storedSchedules = localStorage.getItem("schedules");
-
+   
     if (storedSchedules) {
       setSchedules(JSON.parse(storedSchedules));
     } else {
       fetchSchedules();
     }
   }, []);
+
+  useEffect(() => {
+    // Set the current day based on the current date
+    const today = new Date();
+    const currentDay = today.getDay() === 0 ? 6 : today.getDay() -1; // Adjust for Sunday being 0
+    setCurrentDay(currentDay);
+
+    // Set the current date index to the index of the current day
+    setCurrentDateIndex(currentDay);
+  }, [schedules]);
+
+  
 
   // API에서 시간표 데이터 가져오기
   async function fetchSchedules() {
@@ -42,6 +53,11 @@ export default function Meals() {
 
   const beforeDate = () => {
     setCurrentDateIndex(currentDateIndex - 1);
+  };
+
+  const getDateString = (currentDateIndex: number) => {
+    const dateStrings = [" (월)", " (화)", " (수)", " (목)", " (금)"];
+    return dateStrings[currentDateIndex] || "";
   };
 
   return (
@@ -72,7 +88,9 @@ export default function Meals() {
         index === currentDateIndex ? (
           <div className="dish" key={index}>
             <div className="dish-box">
-              <h2 className="dish-date">시간표</h2>
+            <h2 className="dish-date">
+              {getDateString(currentDateIndex)}
+            </h2>
               <p className="dish-icon">✏️</p> {/* 이모지가 추가된 부분 */}
             </div>
             {Array.isArray(schedule.data) ? (

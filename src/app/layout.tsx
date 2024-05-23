@@ -4,6 +4,7 @@ import "./globals.css";
 import Nav from "./nav";
 import Navout from "./navout";
 import AuthSession from "./AuthSession";
+import Sidenav from "./sidenav";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <AuthSession>
+          <Sidenav/>
           <Nav />
           <Navout />
           {children}

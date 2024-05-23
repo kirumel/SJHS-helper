@@ -3,14 +3,20 @@ import { useSession } from "next-auth/react";
 import Settimetable from "./settimetable";
 import { useEffect, useState } from "react";
 export default function setting() {
-  const { data: session, loading } = useSession();
+  const { data: originalSession, loading } = useSession();
   const [isLoading, setIsLoading] = useState(true); // Set initial loading state to true
 
+  let session = originalSession;
+
+  if (session && !session.user?.name) {
+    session = { ...session, user: { ...session.user, name: "unknown" } };
+  }
   useEffect(() => {
     if (!loading) {
       setIsLoading(false); // Set loading state to false when session data is loaded
     }
   }, [loading]);
+
   if (isLoading) {
     return <video className="로딩" src="/로딩.mp4" autoPlay muted loop />; // Show loading text if data is still loading
   } else {
@@ -21,9 +27,9 @@ export default function setting() {
             <div className="home-layout">
               <div className="insert main-container">
                 <div className="profile">
-                  <img className="profileimg" src={session?.user?.image}></img>
+                  <img className="profileimg" src={session.user?.image}></img>
                   <div>
-                    <h2>{session?.user?.name}</h2>
+                    <h2>{session.user?.name}</h2>
                     <p>성지고등학교</p>
                   </div>
                 </div>
@@ -33,7 +39,7 @@ export default function setting() {
                 <p>최근 기록된 공부시간</p>
               </div>
             </div>
-            <Settimetable />
+            <Settimetable name={session.user?.name} />
           </div>
         </>
       );

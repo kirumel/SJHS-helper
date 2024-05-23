@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import getschedules from "../scripts/getschedules";
-import { useSession } from "next-auth/react";
 
 interface ScheduleItem {
   status: string;
@@ -12,10 +11,10 @@ interface ScheduleItem {
   data?: any[];
 }
 
-export default function Meals() {
+export default function Meals(props: any) {
   const [schedules, setSchedules] = useState<ScheduleItem[]>([]);
   const day = ["월", "화", "수", "목", "금"];
-  const { data: session } = useSession();
+  
 
   useEffect(() => {
     const storedSchedules = localStorage.getItem("schedules");
@@ -52,7 +51,7 @@ export default function Meals() {
 
   return (
     <div className="main-container">
-      <div style={{marginLeft: "20px", marginTop: "10px"}}><h2 style={{margin: "2px"}}>{session?.user?.name}님의</h2>
+      <div style={{marginLeft: "20px", marginTop: "10px"}}><h2 style={{margin: "2px"}}>{props.name}님의</h2>
       <h5 style={{margin: "2px" }}>시간표 🕒📖</h5></div>
       <div className="subject-row">
         {schedules.map((schedule, dayIndex) => (

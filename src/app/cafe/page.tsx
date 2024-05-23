@@ -27,7 +27,7 @@ export default function Cafe() {
   if (isLoading) {
     return <video className="로딩" src="/로딩.mp4" autoPlay muted loop />;
   }
-console.log(posts)
+
 return (
   <div className="home-layout">
     <h1>게시판</h1>
