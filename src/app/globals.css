@@ -21,7 +21,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: end;
   margin-left: 20px;
 }
 .profile h2,
@@ -47,9 +46,10 @@ body {
 }
 .nav {
   padding-left: 15px;
-  display: flex;
+  display: fixed;
+background-color: #e2e6ff;
   height: 50px;
-
+top: 0;
   border-bottom: 1px solid rgba(15, 15, 15, 0.102);
 }
 
@@ -61,6 +61,9 @@ body {
   display: flex;
   align-items: center;
   font-size: 16px;
+}
+.side{
+  margin-left: 20px;
 }
 .navout {
   background-color: white;
@@ -75,18 +78,26 @@ body {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
+
 .sidenavout{
   background-color: white;
-  bottom: 0%;
-  padding-top: 10px;
+  position: fixed;
+  padding-top: 10p;
   padding-bottom: 10px;
-  width: 100%;
+  height: 100%;
   font-family: "Noto Sans KR", sans-serif;
   font-weight: 500;
   border-top: 1px solid rgb(15, 15, 15, 0.1);
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  
+
+}
+.sidenavout-list{
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
 }
 .navout-list {
   display: flex;
@@ -94,6 +105,19 @@ body {
   justify-content: space-between;
   margin-left: 30px;
   margin-right: 30px;
+}
+
+.sidenavout-list p {
+  margin: 0;
+}
+.sidenavout-list a {
+  color: rgb(118, 121, 124);
+  text-decoration: none;
+}
+.non-active{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .navout-list p {
   margin: 0;
@@ -104,6 +128,9 @@ body {
 }
 .active {
   color: rgb(113, 128, 172);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .tab-icon {
