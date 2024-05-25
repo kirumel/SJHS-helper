@@ -50,9 +50,13 @@ export default function Meals(props: any) {
   };
 
   return (
+    <div className="home-layout">
     <div className="main-container">
-      <div style={{marginLeft: "20px", marginTop: "10px"}}><h2 style={{margin: "2px"}}>{props.name}님의</h2>
+      <div className="subject-title">
+      <div><h2 style={{margin: "2px"}}>{props.name}님의</h2>
       <h5 style={{margin: "2px" }}>시간표 🕒📖</h5></div>
+      <button className="subject-button" onClick={fetchSchedules}>초기화</button>
+      </div>
       <div className="subject-row">
         {schedules.map((schedule, dayIndex) => (
           <div key={dayIndex} className="subject">
@@ -74,7 +78,7 @@ export default function Meals(props: any) {
           </div>
         ))}
       </div>
-      <button onClick={fetchSchedules}>초기화</button>
+    </div>
     </div>
   );
 }

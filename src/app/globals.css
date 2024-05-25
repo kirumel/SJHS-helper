@@ -2,7 +2,6 @@
 
 body {
   margin: 0;
-  margin-bottom: 80px;
   background-color: #f5f5fa;
 }
 
@@ -46,10 +45,8 @@ body {
 }
 .nav {
   padding-left: 15px;
-  display: fixed;
-background-color: #e2e6ff;
   height: 50px;
-top: 0;
+display: flex;
   border-bottom: 1px solid rgba(15, 15, 15, 0.102);
 }
 
@@ -63,7 +60,7 @@ top: 0;
   font-size: 16px;
 }
 .side{
-  margin-left: 20px;
+  
 }
 .navout {
   background-color: white;
@@ -81,17 +78,20 @@ top: 0;
 
 .sidenavout{
   background-color: white;
-  position: fixed;
-  padding-top: 10p;
-  padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   height: 100%;
+  margin: 0%;
   font-family: "Noto Sans KR", sans-serif;
   font-weight: 500;
-  border-top: 1px solid rgb(15, 15, 15, 0.1);
-
+  border-right: 1px solid rgb(15, 15, 15, 0.1);
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
 }
 .sidenavout-list{
-  height: 100%;
+  height: 80%;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -278,11 +278,7 @@ top: 0;
   flex-direction: column;
 }
 .dish {
-  position: absolute;
-  top: 50%;
   width: 80%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 .comment-img {
   width: 100%;
@@ -295,7 +291,11 @@ top: 0;
   background-repeat: no-repeat;
   margin: 0;
 }
-
+.dish-display{
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
 .comment-imgbox {
   margin: 20px;
 }
@@ -523,7 +523,7 @@ top: 0;
   justify-content: right;
   text-align: right;
 }
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 680px) {
   .home-dish-list {
     text-align: right;
     display: block;
@@ -579,4 +579,23 @@ top: 0;
   height: 80%;
   transform: translate(-50%, -50%);
   position: fixed;
+}
+.subject-title{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.subject-button{
+  background-color:  rgb(138, 156, 255);
+  color: white;
+  border-radius: 100px;
+  height: 35px;
+  width: 80px;
+  border: 0px;
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 600;
 }

@@ -8,7 +8,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export default function NavOut() {
   const pathname = usePathname();
   return (
+    <>
     <div className="sidenavout">
+    
       <div className="sidenavout-list">
         {tabs.map((tab, index) => (
           <Link href={tab.route} key={index}>
@@ -24,5 +26,6 @@ export default function NavOut() {
         ))}
       </div>
     </div>
+    </>
   );
 }

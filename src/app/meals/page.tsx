@@ -37,7 +37,7 @@ export default function Meals() {
   }
 
   return (
-    <>
+    <div className="side">
       <div className="left-buttonuse buttonuse">
         <div className="button-box">
           <button
@@ -87,6 +87,6 @@ export default function Meals() {
           </div>
         ) : null
       )}
-    </>
+    </div>
   );
 }

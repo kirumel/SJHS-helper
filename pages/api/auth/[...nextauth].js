@@ -92,7 +92,7 @@ export const authOptions = {
           image: user.image,
           role: user.role,
           grade: user.grade,
-          class: user.class, // Change 'class' to 'userClass' or another suitable name
+          class: user.class, 
         };
       }
       return token;

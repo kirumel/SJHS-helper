@@ -61,7 +61,7 @@ export default function Meals() {
   };
 
   return (
-    <div>
+    <div className="dish-display">
       <div className="left-buttonuse buttonuse">
         <div className="button-box">
           <button
