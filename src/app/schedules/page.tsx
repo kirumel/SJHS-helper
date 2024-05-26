@@ -14,11 +14,11 @@ interface ScheduleItem {
 export default function Meals() {
   const [schedules, setSchedules] = useState<ScheduleItem[]>([]);
   const [currentDateIndex, setCurrentDateIndex] = useState<number>(0);
-  const [currentDay, setCurrentDay] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const storedSchedules = localStorage.getItem("schedules");
-   
+
     if (storedSchedules) {
       setSchedules(JSON.parse(storedSchedules));
     } else {
@@ -27,24 +27,26 @@ export default function Meals() {
   }, []);
 
   useEffect(() => {
-    // Set the current day based on the current date
-    const today = new Date();
-    const currentDay = today.getDay() === 0 ? 6 : today.getDay() -1; // Adjust for Sunday being 0
-    setCurrentDay(currentDay);
-
-    // Set the current date index to the index of the current day
-    setCurrentDateIndex(currentDay);
+    setCurrentDateIndex(getCurrentDayIndex());
   }, [schedules]);
 
-  
-
-  // API에서 시간표 데이터 가져오기
   async function fetchSchedules() {
     const scheduleData = await getschedules();
     setSchedules(scheduleData);
-
-    // 데이터를 로컬 스토리지에 저장
     localStorage.setItem("schedules", JSON.stringify(scheduleData));
+  }
+
+  function getCurrentDayIndex() {
+    setIsLoading(true);
+    const today = new Date();
+    const dayOfWeek = today.getDay();
+    setIsLoading(false);
+
+    if (dayOfWeek === 0 || dayOfWeek === 6) {
+      return 0;
+    } else {
+      return dayOfWeek - 1;
+    }
   }
 
   const nextDate = () => {
@@ -59,39 +61,28 @@ export default function Meals() {
     const dateStrings = [" (월)", " (화)", " (수)", " (목)", " (금)"];
     return dateStrings[currentDateIndex] || "";
   };
-
+  if (isLoading) {
+    return (
+      <div className="video-container">
+        <video className="로딩" src="/로딩.mp4" autoPlay muted loop></video>
+      </div>
+    );
+  }
   return (
     <div className="dish-display">
-      <div className="left-buttonuse buttonuse">
-        <div className="button-box">
-          <button
-            className="dish-button"
-            onClick={beforeDate}
-            disabled={currentDateIndex === 0}
-          >
-            &lt;
-          </button>
-        </div>
-      </div>
-      <div className="right-buttonuse buttonuse">
-        <div className="button-box">
-          <button
-            className="dish-button"
-            onClick={nextDate}
-            disabled={currentDateIndex === schedules.length - 1}
-          >
-            &gt;
-          </button>
-        </div>
-      </div>
+      <button
+        className="dish-button"
+        onClick={beforeDate}
+        disabled={currentDateIndex === 0}
+      >
+        &lt;
+      </button>
       {schedules.map((schedule, index) =>
         index === currentDateIndex ? (
           <div className="dish" key={index}>
             <div className="dish-box">
-            <h2 className="dish-date">
-              {getDateString(currentDateIndex)}
-            </h2>
-              <p className="dish-icon">✏️</p> {/* 이모지가 추가된 부분 */}
+              <h2 className="dish-date">{getDateString(currentDateIndex)}</h2>
+              <p className="dish-icon">✏️</p>
             </div>
             {Array.isArray(schedule.data) ? (
               <div className="dish-list">
@@ -109,8 +100,15 @@ export default function Meals() {
               </div>
             )}
           </div>
-        ) : null,
+        ) : null
       )}
+      <button
+        className="dish-button"
+        onClick={nextDate}
+        disabled={currentDateIndex === schedules.length - 1}
+      >
+        &gt;
+      </button>
     </div>
   );
 }

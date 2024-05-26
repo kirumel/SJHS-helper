@@ -6,7 +6,7 @@ import KakaoProvider from "next-auth/providers/kakao";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
-import mysql from "mysql2/promise";
+
 const prisma = new PrismaClient();
 
 export const authOptions = {
@@ -30,6 +30,7 @@ export const authOptions = {
         },
       },
     }),
+
     CredentialsProvider({
       name: "credentials",
       credentials: {
@@ -37,25 +38,17 @@ export const authOptions = {
         password: { label: "password", type: "password" },
       },
       async authorize(credentials) {
-        const connection = await mysql.createConnection({
-          host: "localhost",
-          user: "root",
-          password: "",
-          database: "",
-        });
-
         try {
-          const [rows, fields] = await connection.execute(
-            "SELECT * FROM altuser WHERE loginId = ? OR email = ?",
-            [credentials.login, credentials.login]
-          );
+          const user = await prisma.sJHSUser?.findFirst({
+            where: {
+              OR: [{ email: credentials.login }],
+            },
+          });
 
-          if (rows.length === 0) {
+          if (!user) {
             console.log("해당 로그인 ID 또는 이메일은 없음");
             return null;
           }
-
-          const user = rows[0];
 
           const pwcheck = await bcrypt.compare(
             credentials.password,
@@ -66,7 +59,6 @@ export const authOptions = {
             console.log("비밀번호가 일치하지 않음");
             return null;
           }
-
           return user;
         } catch (error) {
           console.error("인증 중 오류 발생:", error);
@@ -75,15 +67,12 @@ export const authOptions = {
       },
     }),
   ],
-  //3. jwt 써놔야 잘됩니다 + jwt 만료일설정
+
   session: {
     strategy: "jwt",
     maxAge: 30 * 24 * 60 * 60, //30일
   },
-
   callbacks: {
-    //4. jwt 만들 때 실행되는 코드
-    //user변수는 DB의 유저정보담겨있고 token.user에 뭐 저장하면 jwt에 들어갑니다.
     jwt: async ({ token, user }) => {
       if (user) {
         token.user = {
@@ -92,20 +81,17 @@ export const authOptions = {
           image: user.image,
           role: user.role,
           grade: user.grade,
-          class: user.class, 
+          class: user.class,
         };
       }
       return token;
     },
-    //5. 유저 세션이 조회될 때 마다 실행되는 코드
     session: async ({ session, token }) => {
       session.user = token.user;
       return session;
     },
-    
   },
-
-  secret: "tjdwl123123123",
+  secret: process.env.NEXTAUTH_SECRET,
   adapter: PrismaAdapter(prisma),
 };
 

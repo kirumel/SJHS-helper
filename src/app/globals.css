@@ -3,8 +3,12 @@
 body {
   margin: 0;
   background-color: #f5f5fa;
+  scroll-behavior: smooth;
+  height: 100%;
 }
-
+html {
+  height: 100%;
+}
 .profileimg {
   width: 80px;
   height: 80px;
@@ -46,7 +50,7 @@ body {
 .nav {
   padding-left: 15px;
   height: 50px;
-display: flex;
+  display: flex;
   border-bottom: 1px solid rgba(15, 15, 15, 0.102);
 }
 
@@ -59,13 +63,19 @@ display: flex;
   align-items: center;
   font-size: 16px;
 }
-.side{
-  
+
+.sidenavout-display {
+  display: flex;
+  height: 100%;
+}
+.main-content {
+  flex: 1;
+  overflow: scroll;
 }
 .navout {
   background-color: white;
   position: fixed;
-  bottom: 0%;
+  bottom: 0;
   padding-top: 10px;
   padding-bottom: 10px;
   width: 100%;
@@ -75,8 +85,21 @@ display: flex;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
-
-.sidenavout{
+@media screen and (min-width: 750px) {
+  .navout {
+    display: none;
+  }
+}
+@media screen and (max-width: 750px) {
+  .sidenav {
+    display: none;
+  }
+  .main-content {
+    padding-bottom: 70px;
+    transition: all 3.5s;
+  }
+}
+.sidenavout {
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -90,7 +113,7 @@ display: flex;
   border-bottom-right-radius: 10px;
   border-top-right-radius: 10px;
 }
-.sidenavout-list{
+.sidenavout-list {
   height: 80%;
   padding: 20px;
   display: flex;
@@ -114,7 +137,7 @@ display: flex;
   color: rgb(118, 121, 124);
   text-decoration: none;
 }
-.non-active{
+.non-active {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -258,27 +281,9 @@ display: flex;
   font-size: 30px; /* 폰트 크기 */
   cursor: pointer; /* 커서 모양 */
 }
-
-.left-buttonuse {
-  position: absolute;
-  left: 0%;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.right-buttonuse {
-  position: absolute;
-  right: 0%;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.button-box {
-  display: flex;
-  flex-direction: column;
-}
 .dish {
   width: 80%;
+  position: relative;
 }
 .comment-img {
   width: 100%;
@@ -291,10 +296,11 @@ display: flex;
   background-repeat: no-repeat;
   margin: 0;
 }
-.dish-display{
+.dish-display {
   display: flex;
   justify-content: center;
-  height: 100%;
+  align-items: center;
+  height: 90vh;
 }
 .comment-imgbox {
   margin: 20px;
@@ -556,15 +562,7 @@ display: flex;
   font-weight: 600;
   margin-top: 2px;
 }
-.loading {
-  font-family: "Noto Sans KR", "sans-serif";
-  font-weight: 700;
-  font-size: 32px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  position: absolute;
-}
+
 .notice {
   margin: 0px;
   font-family: "Noto Sans KR", sans-serif;
@@ -573,14 +571,23 @@ display: flex;
 .insert {
   padding: 30px;
 }
-.로딩 {
-  top: 50%;
-  left: 50%;
-  height: 80%;
-  transform: translate(-50%, -50%);
-  position: fixed;
+
+.video-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
 }
-.subject-title{
+
+.video-container video {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.로딩 {
+  font-family: "Noto Sans KR", sans-serif;
+}
+.subject-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -589,8 +596,8 @@ display: flex;
   margin-right: 20px;
 }
 
-.subject-button{
-  background-color:  rgb(138, 156, 255);
+.subject-button {
+  background-color: rgb(138, 156, 255);
   color: white;
   border-radius: 100px;
   height: 35px;

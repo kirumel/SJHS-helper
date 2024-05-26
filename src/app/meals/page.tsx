@@ -33,35 +33,22 @@ export default function Meals() {
   };
 
   if (isLoading) {
-    return <video className="로딩" src="/로딩.mp4" autoPlay muted loop />;
+    return (
+      <div className="video-container">
+        <video className="로딩" src="/로딩.mp4" autoPlay muted loop></video>
+      </div>
+    );
   }
 
   return (
-    <div className="side">
-      <div className="left-buttonuse buttonuse">
-        <div className="button-box">
-          <button
-            className="dish-button"
-            onClick={beforeDate}
-            disabled={currentDateIndex === 0}
-          >
-            &lt;
-          </button>
-        </div>
-      </div>
-
-      <div className="right-buttonuse buttonuse">
-        <div className="button-box">
-          <button
-            className="dish-button"
-            onClick={nextDate}
-            disabled={currentDateIndex === meals.length - 1}
-          >
-            &gt;
-          </button>
-        </div>
-      </div>
-
+    <div className="dish-display">
+      <button
+        className="dish-button"
+        onClick={beforeDate}
+        disabled={currentDateIndex === 0}
+      >
+        &lt;
+      </button>
       {meals.map((meal, index) =>
         index == currentDateIndex ? (
           <div className="dish" key={index}>
@@ -87,6 +74,13 @@ export default function Meals() {
           </div>
         ) : null
       )}
+      <button
+        className="dish-button"
+        onClick={nextDate}
+        disabled={currentDateIndex === meals.length - 1}
+      >
+        &gt;
+      </button>
     </div>
   );
 }
