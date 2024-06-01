@@ -16,7 +16,7 @@ export default function Cafe() {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch("/api/posts")
+    fetch("/api/post/posts")
       .then((response) => response.json())
       .then((data: Post[]) => {
         setPosts(data);

@@ -1,10 +1,11 @@
+"use client";
+
 import Link from "next/link";
 import Homeschedule from "./homeschedules";
 import Hometimetable from "./hometimetable";
 import maintaps from "./maintabs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Hello from "./hellohome";
-import Sidenav from"./sidenav"
 
 export default async function home() {
   return (
@@ -77,7 +78,6 @@ export default async function home() {
           </div>
         </div>
       </div>
-    
     </>
   );
 }

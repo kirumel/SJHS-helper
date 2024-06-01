@@ -1,7 +1,10 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect , useState} from "react";
 
-const VerifyEmailPage = () => {
+export default function VerifyEmailPage() {
+
+  const [message, setMessage] = useState("");
+  
   useEffect(() => {
     const verifyEmail = async () => {
       const queryParams = new URLSearchParams(window.location.search);
@@ -20,23 +23,24 @@ const VerifyEmailPage = () => {
 
         if (response.ok) {
           const data = await response.json();
-          console.log("이메일 인증 성공:", data);
+          setMessage('이메일 인증이 완료되었습니다');
         } else {
-          throw new Error("이메일 인증 실패");
+          setMessage("이메일 및 토큰 정보가 없습니다");
         }
       } catch (error) {
-        console.error("이메일 인증 요청 중 오류 발생:", error);
-      }
+        setMessage(" 오류가 발생했습니다");}
     };
 
     verifyEmail();
   }, []);
 
   return (
-    <div>
-      <p>이메일 인증을 진행 중입니다...</p>
+  <div className="dish-display">
+    <div className="insert main-container">
+      {message}
     </div>
-  );
-};
+  </div>)
+}
 
-export default VerifyEmailPage;
+
+

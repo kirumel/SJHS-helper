@@ -28,10 +28,12 @@ export default function RootLayout({
             </div>
             <div className="main-content">
               <Nav />
-              {children}
+              <div>
+                {children}
+                <Navout />
+              </div>
             </div>
           </div>
-          <Navout />
         </AuthSession>
       </body>
     </html>

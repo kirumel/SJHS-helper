@@ -16,10 +16,10 @@ export default function Meals() {
 
   useEffect(() => {
     async function fetchMeals() {
-      setIsLoading(true); // 데이터를 가져오기 전에 로딩 상태 설정
+      setIsLoading(true); 
       const mealsData = await getMeal();
       setMeals(mealsData);
-      setIsLoading(false); // 데이터를 가져온 후 로딩 상태 해제
+      setIsLoading(false); 
     }
     fetchMeals();
   }, []);
