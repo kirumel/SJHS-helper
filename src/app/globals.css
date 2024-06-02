@@ -1,10 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
-
 body {
   margin: 0;
-  background-color: #f5f5fa;
-  scroll-behavior: smooth;
-  height: 100%;
 }
 html {
   height: 100%;
@@ -94,6 +90,7 @@ html {
   .sidenav {
     display: none;
   }
+
   .main-content {
     transition: all 3.5s;
   }
@@ -286,7 +283,7 @@ html {
 }
 .comment-img {
   width: 100%;
-  background-image: url("/logofull.jpg");
+  background-image: url("/altisto.png");
   height: 30vmin;
   background-position: center;
   border-radius: 16px;
@@ -389,14 +386,11 @@ html {
   font-weight: 800;
   font-size: 16px;
 }
-.home-layout {
-  padding: 0.5rem;
-  padding-top: 15px;
-}
+
 @media screen and (min-width: 600px) {
   .home-layout {
-    margin-left: 55px;
-    margin-right: 55px;
+    padding: 3rem;
+    padding-top: 15px;
     transition: all 1s;
   }
   .home-dish-list p {
@@ -406,8 +400,8 @@ html {
 }
 @media screen and (max-width: 599px) {
   .home-layout {
-    margin-left: 20px;
-    margin-right: 20px;
+    padding: 1.5rem;
+    padding-top: 15px;
     transition: all 1s;
   }
   .home-dish-list p {
@@ -604,46 +598,4 @@ html {
   border: 0px;
   font-family: "Noto Sans KR", sans-serif;
   font-weight: 600;
-}
-
-.ok-button {
-  color: white;
-  background-color: rgb(138, 156, 255);
-  height: 60px;
-  width: 100%;
-  border-radius: 20px;
-  padding: 10px;
-  border: 0px;
-  font-family: "Noto Sans KR", sans-serif;
-  font-weight: 600;
-}
-
-.start-register-title {
-  margin: 0;
-  font-weight: 700;
-  font-family: "Noto Sans KR", sans-serif;
-}
-.ok-button-div {
-  position: sticky;
-  bottom: 0;
-  margin-top: auto;
-  width: 100%;
-  align-items: stretch;
-}
-.register-main {
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
-}
-.funnel-layout {
-  display: flex;
-  flex-direction: column;
-  height: 85vh;
-}
-
-.start-register-content p {
-  margin-top: 30px;
-  font-family: "Noto Sans KR", sans-serif;
-  font-weight: 500;
-  letter-spacing: 1px;
 }

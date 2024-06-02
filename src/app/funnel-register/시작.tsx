@@ -4,7 +4,7 @@ export default function StartRegister({ next }: { next: () => void }) {
   return (
     <div className="funnel-layout home-layout">
       <div className="register-main">
-        <h1 className="start-register-title">회원가입 하기</h1>
+        <h2 className="start-register-title">회원가입 하기</h2>
         <div className="start-register-content">
           <p>
             회원가입 하면 SJHS-helper의

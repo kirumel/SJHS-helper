@@ -1,0 +1,6 @@
+body {
+  margin: 0;
+  scroll-behavior: smooth;
+  background-color: rgb(245, 245, 245);
+  height: 100%;
+}
