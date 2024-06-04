@@ -23,7 +23,7 @@ const maintabs = [
     label: "시간표",
   },
   {
-    route: "../test",
+    route: "/funnel-register",
     icon: faClock,
     label: "타이머",
   },

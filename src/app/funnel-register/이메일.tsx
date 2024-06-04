@@ -1,6 +1,24 @@
 "use client";
+import { useState } from "react";
 
 export default function StartRegister({ next }: { next: () => void }) {
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleTrue = () => {
+    setIsChecked(!isChecked);
+  };
+
+  const handleButtonClick = () => {
+    if (isChecked) {
+      next();
+    }
+  };
+
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   return (
     <>
       <div className="funnel-layout home-layout">
@@ -15,10 +33,20 @@ export default function StartRegister({ next }: { next: () => void }) {
             className="start-register-input"
             type="text"
             name="name"
+            onChange={(e) => {
+              const email = e.target.value;
+              const isValid = validateEmail(email);
+              setIsChecked(isValid);
+            }}
           ></input>
         </div>
         <div className="ok-button-div">
-          <button className="ok-button" type="button" onClick={next}>
+          <button
+            className="ok-button"
+            type="button"
+            disabled={!isChecked}
+            onClick={handleButtonClick}
+          >
             확인
           </button>
         </div>

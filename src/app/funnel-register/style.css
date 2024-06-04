@@ -2,6 +2,9 @@ p,
 a {
   font-family: "Noto Sans KR", sans-serif;
 }
+body {
+  background-color: white;
+}
 
 .custom-checkbox {
   appearance: none; /* 기본 외관 제거 */
@@ -52,12 +55,18 @@ a {
   border: 0px;
   font-family: "Noto Sans KR", sans-serif;
   font-weight: 600;
+  transition: all 0.5s;
+}
+.ok-button:disabled {
+  background-color: rgba(22, 24, 31, 0.5);
+  transition: all 0.5s;
 }
 
 .start-register-title {
   margin: 0;
   font-weight: 700;
   font-family: "Noto Sans KR", sans-serif;
+  font-size: 25px;
 }
 .ok-button-div {
   position: sticky;
