@@ -5,9 +5,11 @@ export default function StartRegister({ next }: { next: () => void }) {
     <div className="funnel-layout home-layout">
       <div className="register-main">
         <h2 className="start-register-title">회원가입 하기</h2>
+        <p className="subtitle">아래의 이메일을 작성해주세요</p>
+        <img src="altisto.png" className="start-register-img" />
         <div className="start-register-content">
           <p>
-            회원가입 하면 SJHS-helper의
+            회원가입 하면 SJHS helper의
             <br /> 모든 서비스를 이용 가능해요! 📱
           </p>
           <p>

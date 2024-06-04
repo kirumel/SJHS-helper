@@ -11,7 +11,7 @@ export default function StartRegister({ next }: { next: () => void }) {
           </h2>
           <p className="subtitle">아래의 이메일을 작성해주세요</p>
           <input
-            placeholder="이름"
+            placeholder="이메일"
             className="start-register-input"
             type="text"
             name="name"

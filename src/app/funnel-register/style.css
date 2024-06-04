@@ -80,9 +80,10 @@ a {
 }
 
 .start-register-content p {
-  font-family: "Noto Sans KR", sans-serif;
   font-weight: 500;
-  letter-spacing: 1px;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  margin-bottom: 20px;
 }
 .subtitle {
   color: rgb(107 114 128);
@@ -102,4 +103,11 @@ a {
 .start-register-input:focus {
   outline: none;
   background-color: rgb(237, 239, 250);
+}
+
+.start-register-img {
+  height: 20%;
+  margin-bottom: 20px;
+  object-fit: cover;
+  border-radius: 1rem;
 }

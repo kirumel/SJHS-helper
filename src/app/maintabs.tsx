@@ -4,7 +4,6 @@ import {
   faBowlFood,
   faCalendarDays,
   faClock,
-  faUserCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
 const maintabs = [
@@ -28,9 +27,6 @@ const maintabs = [
     icon: faClock,
     label: "타이머",
   },
-  { route: "../test2", icon: faUserCircle, label: "마이" },
-  { route: "../test", icon: faCalendarDays, label: "관리자 탭" },
-  { route: "../test", icon: faCalendarDays, label: "설정" },
 ];
 
 export default maintabs;

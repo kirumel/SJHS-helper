@@ -15,9 +15,7 @@ export default function StartRegister({ next }: { next: () => void }) {
             height={30}
           />
           <h2 className="start-register-title">이용약관 동의</h2>
-          <div className="start-register-content">
-            <p>먼저 아래의 이용약관을 읽어주세요</p>
-          </div>
+          <p className="subtitle">아래의 약관을 확인해주세요</p>
           <a className="register" href="https://www.youtube.com/">
             &gt; 개인정보 처리방침
           </a>
@@ -30,7 +28,7 @@ export default function StartRegister({ next }: { next: () => void }) {
         </div>
         <div className="ok-button-div">
           <button className="ok-button" type="button" onClick={next}>
-            회원가입 하러가기
+            다음으로
           </button>
         </div>
       </div>
