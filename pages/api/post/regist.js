@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
-    const { email, password, name, nickname } = req.body;
+    const { email, password, name, nickname, handle } = req.body;
 
     if (!email || !password || !name || !nickname) {
       return res.status(400).json({ message: "모든 필드를 입력해주세요" });
@@ -33,6 +33,7 @@ export default async function handler(req, res) {
           password: hashedPassword,
           name,
           nickname,
+          handle,
           token,
           expires,
         },

@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-export default function StartRegister({ next }: { next: () => void }) {
+export default function StartRegister({
+  next,
+}: {
+  next: (password: string) => void;
+}) {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -25,7 +29,9 @@ export default function StartRegister({ next }: { next: () => void }) {
             className="start-register-input"
             type="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
             name="name"
           ></input>
           <input
@@ -47,7 +53,7 @@ export default function StartRegister({ next }: { next: () => void }) {
             disabled={isButtonDisabled}
             className="ok-button"
             type="button"
-            onClick={next}
+            onClick={() => next(password)}
           >
             확인
           </button>

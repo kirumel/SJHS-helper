@@ -15,6 +15,9 @@ import { useState } from "react";
 export type FunnelState = {
   name: string;
   email: string;
+  password: string;
+  nickname: string;
+  id: string;
 };
 
 export default function ExampleFunnel() {
@@ -31,12 +34,7 @@ export default function ExampleFunnel() {
     ] as const,
     { initialStep: "start" }
   ).withState<FunnelState>({});
-
-  const [registerData, setRegisterData] = useState({ name: "", email: "" });
-  console.log(registerData.email);
-  const handleChangeInput = (email: string) => {
-    setRegisterData((prevState) => ({ ...prevState, email }));
-  };
+  console.log(state);
   return (
     <Funnel>
       <Funnel.Step name="start">
@@ -47,22 +45,43 @@ export default function ExampleFunnel() {
       </Funnel.Step>
       <Funnel.Step name="이메일">
         <Email
-          email={registerData.email}
-          next={() => setState({ step: "비번" })}
-          onchange={handleChangeInput}
+          next={(email) => {
+            return setState((prevState) => ({
+              ...prevState,
+              step: "비번",
+              email,
+            }));
+          }}
         />
       </Funnel.Step>
       <Funnel.Step name="비번">
-        <Pw next={() => setState({ step: "이름" })} />
+        <Pw
+          next={(password) =>
+            setState((prevState) => ({ ...prevState, step: "이름", password }))
+          }
+        />
       </Funnel.Step>
       <Funnel.Step name="이름">
-        <Name next={() => setState({ step: "닉네임" })} />
+        <Name
+          next={(name) =>
+            setState((prevState) => ({ ...prevState, step: "닉네임", name }))
+          }
+        />
       </Funnel.Step>
       <Funnel.Step name="닉네임">
-        <Nickname next={() => setState({ step: "확인" })} />
+        <Nickname
+          next={(nicknameandid) =>
+            setState((prevState) => ({
+              ...prevState,
+              step: "확인",
+              nickname: nicknameandid.nickname,
+              id: nicknameandid.id,
+            }))
+          }
+        />
       </Funnel.Step>
       <Funnel.Step name="확인">
-        <Config next={() => setState({ step: "start" })} />
+        <Config {...state} />
       </Funnel.Step>
     </Funnel>
   );

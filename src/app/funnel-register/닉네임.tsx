@@ -1,6 +1,20 @@
 "use client";
+import { useState } from "react";
 
-export default function StartRegister({ next }: { next: () => void }) {
+interface value {
+  nickname: string;
+  id: string;
+}
+export default function StartRegister({
+  next,
+}: {
+  next: (nicknameandid: value) => void;
+}) {
+  const [nicknameandid, setnicknameandid] = useState<value>({
+    nickname: "",
+    id: "",
+  });
+
   return (
     <>
       <div className="funnel-layout home-layout">
@@ -15,6 +29,13 @@ export default function StartRegister({ next }: { next: () => void }) {
             className="start-register-input"
             type="text"
             name="name"
+            onChange={(e) =>
+              setnicknameandid((prevState) => ({
+                ...prevState,
+                nickname: e.target.value,
+                id: "",
+              }))
+            }
           ></input>
           <input
             style={{ marginTop: "15px" }}
@@ -22,10 +43,20 @@ export default function StartRegister({ next }: { next: () => void }) {
             className="start-register-input"
             type="text"
             name="name"
+            onChange={(e) =>
+              setnicknameandid((prevState) => ({
+                ...prevState,
+                id: e.target.value,
+              }))
+            }
           ></input>
         </div>
         <div className="ok-button-div">
-          <button className="ok-button" type="button" onClick={next}>
+          <button
+            className="ok-button"
+            type="button"
+            onClick={() => next(nicknameandid)}
+          >
             확인
           </button>
         </div>

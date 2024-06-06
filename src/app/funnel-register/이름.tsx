@@ -1,6 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 
-export default function StartRegister({ next }: { next: () => void }) {
+export default function StartRegister({
+  next,
+}: {
+  next: (name: string) => void;
+}) {
   const [name, setName] = useState("");
   const isButtonDisabled =
     name.length < 3 ||
@@ -21,7 +25,6 @@ export default function StartRegister({ next }: { next: () => void }) {
             className="start-register-input"
             type="text"
             name="name"
-            value={name}
             onChange={(e) => setName(e.target.value)}
           ></input>
         </div>
@@ -30,7 +33,7 @@ export default function StartRegister({ next }: { next: () => void }) {
             className="ok-button"
             disabled={isButtonDisabled}
             type="button"
-            onClick={next}
+            onClick={() => next(name)}
           >
             확인
           </button>

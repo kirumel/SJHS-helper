@@ -14,16 +14,21 @@ export default async function handler(req, res) {
         where: { email },
       });
 
+      console.log(
+        `token : ${token}, userToken:${unverifiedUser.token}, isExpired:${
+          new Date() > unverifiedUser.expires
+        }, isMatched: ${token === unverifiedUser.token}`
+      );
+
       if (
         !unverifiedUser ||
         unverifiedUser.token !== token ||
         new Date() > unverifiedUser.expires
       ) {
-        return res
-          .status(400)
-          .json({
-            message: "이미 인증된 이메일이거나 유효기간이 만료된 링크입니다",
-          });
+        //여긴아님
+        return res.status(400).json({
+          message: "이미 인증된 이메일이거나 유효기간이 만료된 링크입니다",
+        });
       }
 
       // 이메일 중복 체크
@@ -32,6 +37,7 @@ export default async function handler(req, res) {
       });
 
       if (existingUser) {
+        console.log("유저존재");
         return res.status(400).json({ message: "이미 등록된 이메일입니다." });
       }
 

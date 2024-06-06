@@ -1,16 +1,17 @@
 "use client";
 import { useState } from "react";
 
-export default function StartRegister({ next, email }: { next: () => void }) {
+export default function StartRegister({
+  next,
+}: {
+  next: (email: string) => void;
+}) {
   const [isChecked, setIsChecked] = useState(false);
+  const [emailData, setEmailData] = useState("");
 
-  const handleTrue = () => {
-    setIsChecked(!isChecked);
-  };
-
-  const handleButtonClick = () => {
+  const handleButtonClick = (email: string) => {
     if (isChecked) {
-      next();
+      next(email);
     }
   };
 
@@ -36,6 +37,7 @@ export default function StartRegister({ next, email }: { next: () => void }) {
             onChange={(e) => {
               const email = e.target.value;
               const isValid = validateEmail(email);
+              setEmailData(email);
               setIsChecked(isValid);
             }}
           ></input>
@@ -45,7 +47,7 @@ export default function StartRegister({ next, email }: { next: () => void }) {
             className="ok-button"
             type="button"
             disabled={!isChecked}
-            onClick={handleButtonClick}
+            onClick={() => handleButtonClick(emailData)}
           >
             확인
           </button>
