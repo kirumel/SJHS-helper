@@ -41,7 +41,6 @@ export default function dev() {
                 href="https://damie.works/profile"
                 style={{ textDecoration: "none" }}
               >
-                {" "}
                 @ekal_.index / 다미
               </Link>
             </h5>
