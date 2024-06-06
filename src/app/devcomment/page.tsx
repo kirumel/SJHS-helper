@@ -33,6 +33,7 @@ export default function dev() {
             <br />
             <br />
             <h5>developer / UI/UX design : 2309서현웅</h5>
+            <h5>special thanks : @ekal_.index</h5>
           </div>
           <div style={{ textAlign: "right" }}>
             <button className="subject-button">고객센터</button>

@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 
-export default function StartRegister({ next }: { next: () => void }) {
+export default function StartRegister({ next, email }: { next: () => void }) {
   const [isChecked, setIsChecked] = useState(false);
 
   const handleTrue = () => {

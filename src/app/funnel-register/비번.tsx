@@ -1,6 +1,16 @@
-"use client";
+import { useState } from "react";
 
 export default function StartRegister({ next }: { next: () => void }) {
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const isButtonDisabled =
+    password !== confirmPassword ||
+    password === "" ||
+    confirmPassword === "" ||
+    password.length < 8;
+  confirmPassword.length < 8;
+
   return (
     <>
       <div className="funnel-layout home-layout">
@@ -13,19 +23,32 @@ export default function StartRegister({ next }: { next: () => void }) {
           <input
             placeholder="비밀번호"
             className="start-register-input"
-            type="text"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             name="name"
           ></input>
           <input
             style={{ marginTop: "15px" }}
             placeholder="비밀번호 확인"
             className="start-register-input"
-            type="text"
+            type="password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
             name="name"
           ></input>
+          <p className="subtitle" style={{ marginTop: "15px" }}>
+            비밀번호 조건: 8자리 이상
+          </p>
         </div>
+
         <div className="ok-button-div">
-          <button className="ok-button" type="button" onClick={next}>
+          <button
+            disabled={isButtonDisabled}
+            className="ok-button"
+            type="button"
+            onClick={next}
+          >
             확인
           </button>
         </div>
