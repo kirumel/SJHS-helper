@@ -5,7 +5,7 @@ import crypto from "crypto";
 
 const prisma = new PrismaClient();
 
-export default async function handler(req, res) {
+export default async function handler(req: any, res: any) {
   if (req.method === "POST") {
     const { email, password, name, nickname, handle } = req.body;
 
@@ -39,7 +39,7 @@ export default async function handler(req, res) {
         },
       });
 
-      res.status(201).json({ message: "이메일에 인증 링크가 발송되었습니다." });
+      res.redirect("/success");
     } catch (error) {
       console.error("회원 가입 중 오류 발생:", error);
       res.status(500).json({ message: "회원 가입 중 오류가 발생했습니다." });

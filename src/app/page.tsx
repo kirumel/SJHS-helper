@@ -31,7 +31,7 @@ export default async function home() {
             <div className="scroll-container">
               <div className="scroll-list">
                 {maintaps.map((tab, index) => (
-                  <Link href={tab.route} className="box" key={index}>
+                  <a href={tab.route} className="box" key={index}>
                     <div className="maintab-container">
                       <FontAwesomeIcon
                         className="maintab-icon"
@@ -39,7 +39,7 @@ export default async function home() {
                       />
                       <div className="maintab-label">{tab.label}</div>
                     </div>
-                  </Link>
+                  </a>
                 ))}
               </div>
             </div>

@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-export default async function handler(req, res) {
+export default async function handler(req: any, res: any) {
   if (req.method === "GET") {
     try {
       const posts = await prisma.post.findMany();
@@ -38,7 +38,9 @@ export default async function handler(req, res) {
       res.status(201).json({ message: "성공", post });
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message: "오류가 발생했습니다 콘솔을 확인해주세요" });
+      res
+        .status(500)
+        .json({ message: "오류가 발생했습니다 콘솔을 확인해주세요" });
     }
   } else {
     res.setHeader("Allow", ["GET", "POST"]);

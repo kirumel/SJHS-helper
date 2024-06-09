@@ -2,9 +2,6 @@ p,
 a {
   font-family: "Noto Sans KR", sans-serif;
 }
-body {
-  background-color: white;
-}
 
 .custom-checkbox {
   appearance: none; /* 기본 외관 제거 */
@@ -71,9 +68,6 @@ body {
 .ok-button-div {
   position: sticky;
   bottom: 0;
-  margin-top: auto;
-  width: 100%;
-  align-items: stretch;
 }
 .register-main {
   display: flex;
@@ -84,8 +78,9 @@ body {
 .funnel-layout {
   display: flex;
   flex-direction: column;
-  height: 85vh;
+  height: calc(100vh - 114px);
   overflow: hidden;
+  flex: 1;
 }
 
 .start-register-content p {
@@ -121,26 +116,24 @@ body {
   border-radius: 1rem;
 }
 .card {
-  border-radius: 1rem;
-  border: 3px solid rgb(188, 188, 188);
-  padding: 2rem;
+  color: white;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 28rem;
-  width: 17rem;
   font-weight: 700;
-  position: absolute;
-  right: -5px;
-  rotate: -13deg;
-  transition: all 0.5s;
-  background-color: rgb(224, 224, 224);
+  height: 31rem;
+  width: 23rem;
+  border-radius: 1rem;
+  position: relative;
+  transform-style: preserve-3d;
 }
 
 .card-display {
   display: flex;
   flex-direction: column;
   align-items: center;
+  perspective: 1000px;
+  margin: auto;
 }
 
 .margin0 {
@@ -156,4 +149,63 @@ body {
   margin-top: 5px;
   font-size: 15px;
   margin-bottom: 2px;
+}
+
+.card-face {
+  backface-visibility: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 30px;
+  border-radius: 1rem;
+  border: 0.1px solid rgba(255, 255, 255, 0.3);
+  box-sizing: border-box;
+}
+
+.card-front {
+  background-color: rgb(30, 30, 30);
+}
+
+.card-back {
+  background-image: url("/d.png");
+
+  background-position: left;
+  background-size: cover;
+  transform: rotateY(180deg);
+}
+.회전 {
+  rotate: -90deg;
+}
+.회전display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.card-back-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 302px;
+  width: 430px;
+  padding-top: 30%;
+  text-align: right;
+}
+.card-back-title {
+  margin: 0;
+  margin-right: 160px;
+}
+.grident {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -1;
+  transform: translate(-50%, -50%);
+  background-size: cover;
+  opacity: 0;
 }

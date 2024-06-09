@@ -2,9 +2,10 @@ import nodemailer from "nodemailer";
 import fs from "fs";
 
 const transporter = nodemailer.createTransport({
-  service: "naver",
+  service: "mailersend",
+
   port: 587,
-  host: "smtp.naver.com",
+  host: process.env.EMAIL_SERVER_HOST,
   secure: false,
   requireTLS: true,
   tls: { rejectUnauthorized: false },
@@ -17,7 +18,7 @@ const transporter = nodemailer.createTransport({
 export default async function sendVerificationEmail(email, expires, token) {
   try {
     await transporter.sendMail({
-      from: "nyangming@naver.com",
+      from: "Altisto <no-reply@altisto.me>",
       to: email,
       subject: "이메일 인증",
       html: `<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100vh; background-color: #f5f5fa; background-size: cover">

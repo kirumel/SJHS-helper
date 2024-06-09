@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function NavOut() {
   const pathname = usePathname();
-  const notshow = ["/funnel-register", "/devcomment"];
+  const notshow = ["/funnel-register", "/devcomment", "/success"];
   if (pathname && notshow.includes(pathname)) {
     return null;
   }
