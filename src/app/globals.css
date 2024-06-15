@@ -163,8 +163,8 @@ html {
   display: flex;
 }
 .box {
-  border-radius: 16px;
   background-color: rgb(250, 250, 250);
+  border-radius: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -172,7 +172,6 @@ html {
   width: 65px;
   margin-right: 5px;
   margin-left: 5px;
-  border: solid 1px rgb(230, 230, 230, 0.5);
 }
 .container {
   display: flex;
@@ -210,10 +209,10 @@ html {
   white-space: nowrap;
   border-radius: 10px;
   display: flex;
+  padding: 2px;
 }
 .scroll-containercenter {
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 .scroll-container::-webkit-scrollbar {
@@ -304,25 +303,19 @@ html {
 }
 
 .main-event-img {
-  width: 100%;
-  background-image: url("/comment.png");
-  height: 39vmin;
-  background-position: center;
-  background-size: cover;
-  border-radius: 16px;
-  overflow: hidden;
-  background-repeat: no-repeat;
-  margin: 0;
+  height: 35vmin;
+  border-radius: 0.8rem 0.8rem 0 0;
+  object-fit: cover;
+
+  box-sizing: border-box;
+  display: block;
 }
 .event-img {
-  object-fit: cover;
-  object-position: center;
-  width: 100%;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-  height: 25vmax;
+  height: 30vmax;
+  border-radius: 0.8rem 0.8rem 0 0;
+  display: flex;
+  scrollbar-width: none;
+  overflow-x: scroll;
 }
 .detail-title {
   margin: 30px;
@@ -347,12 +340,9 @@ html {
   font-size: 15px;
 }
 .main-container {
-  background-color: rgb(255, 255, 255);
-  padding: 12px;
-  border-radius: 1rem;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  margin-top: 15px;
+  background-color: white;
+  border-radius: 20px;
+  padding: 1.5rem;
 }
 
 .main-container-display {
@@ -389,7 +379,6 @@ html {
 
 @media screen and (min-width: 600px) {
   .home-layout {
-    padding: 3rem;
     padding-top: 15px;
     transition: all 1s;
   }
@@ -400,7 +389,6 @@ html {
 }
 @media screen and (max-width: 599px) {
   .home-layout {
-    padding: 1.5rem;
     padding-top: 15px;
     transition: all 1s;
   }
@@ -598,4 +586,32 @@ html {
   border: 0px;
   font-family: "Noto Sans KR", sans-serif;
   font-weight: 600;
+}
+.line {
+  border: 0.1px solid rgba(195, 195, 195, 0.5);
+  margin-bottom: 0.1rem;
+  margin-top: 0.1rem;
+}
+.etc-container {
+  border: 0.1px solid rgb(195, 195, 195, 0.5);
+  box-shadow: rgb(123, 123, 123, 0.2) 0px 1px 3px;
+  height: 100%;
+  border-radius: 0.8rem;
+  padding: 12px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.padding-layout {
+  padding-top: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.main-event-imgbox {
+  border: 0.1px solid rgb(195, 195, 195, 0.5);
+  background-color: white;
+  position: relative;
+  box-shadow: rgba(123, 123, 123, 0.2) 0px 1px 3px;
+  margin-right: 10px;
+  border-radius: 0.8rem;
 }

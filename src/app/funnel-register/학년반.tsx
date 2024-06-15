@@ -2,53 +2,52 @@
 import { useState } from "react";
 
 interface value {
-  nickname: string;
-  id: string;
+  grade: string;
+  class: string;
 }
 export default function StartRegister({
   next,
 }: {
-  next: (nicknameandid: value) => void;
+  next: (values: value) => void;
 }) {
-  const [nicknameandid, setnicknameandid] = useState<value>({
-    nickname: "",
-    id: "",
+  const [values, setvalues] = useState<value>({
+    grade: "",
+    class: "",
   });
 
-  const length =
-    nicknameandid.nickname.length < 2 || nicknameandid.id.length < 2;
+  const length = values.grade.length == 1 || values.class.length == 1;
   return (
     <>
       <div className="funnel-layout home-layout">
         <div className="register-main">
           <h2 className="start-register-title">
-            사용자님의 닉네임과 id을 <br />
+            사용자님의 학년과 반을 <br />
             알려주세요!
           </h2>
-          <p className="subtitle">아래의 내용을 작성해주세요</p>
+          <p className="subtitle">아래의 이메일을 작성해주세요</p>
           <input
-            placeholder="닉네임"
+            placeholder="학년"
             className="start-register-input"
             type="text"
             name="name"
             onChange={(e) =>
-              setnicknameandid((prevState) => ({
+              setvalues((prevState) => ({
                 ...prevState,
-                nickname: e.target.value,
-                id: "",
+                grade: e.target.value,
+                class: "",
               }))
             }
           ></input>
           <input
             style={{ marginTop: "15px" }}
-            placeholder="id"
+            placeholder="반"
             className="start-register-input"
             type="text"
             name="name"
             onChange={(e) =>
-              setnicknameandid((prevState) => ({
+              setvalues((prevState) => ({
                 ...prevState,
-                id: e.target.value,
+                class: e.target.value,
               }))
             }
           ></input>
@@ -57,8 +56,8 @@ export default function StartRegister({
           <button
             className="ok-button"
             type="button"
-            disabled={length}
-            onClick={() => next(nicknameandid)}
+            disabled={!length}
+            onClick={() => next(values)}
           >
             확인
           </button>

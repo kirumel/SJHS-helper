@@ -27,6 +27,21 @@ const maintabs = [
     icon: faClock,
     label: "타이머",
   },
+  {
+    route: "/funnel-register",
+    icon: faClock,
+    label: "타이머",
+  },
+  {
+    route: "/funnel-register",
+    icon: faClock,
+    label: "타이머",
+  },
+  {
+    route: "/funnel-register",
+    icon: faClock,
+    label: "타이머",
+  },
 ];
 
 export default maintabs;

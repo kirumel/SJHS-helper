@@ -11,6 +11,7 @@ import Name from "./이름";
 import Config from "./확인";
 import "./style.css";
 import { useState } from "react";
+import GradeAndClass from "./학년반";
 
 export type FunnelState = {
   name: string;
@@ -18,6 +19,8 @@ export type FunnelState = {
   password: string;
   nickname: string;
   id: string;
+  class: string;
+  grade: string;
 };
 
 export default function ExampleFunnel() {
@@ -28,6 +31,7 @@ export default function ExampleFunnel() {
       "이메일",
       "비번",
       "이름",
+      "학년반",
       "닉네임",
       "사진",
       "확인",
@@ -64,7 +68,19 @@ export default function ExampleFunnel() {
       <Funnel.Step name="이름">
         <Name
           next={(name) =>
-            setState((prevState) => ({ ...prevState, step: "닉네임", name }))
+            setState((prevState) => ({ ...prevState, step: "학년반", name }))
+          }
+        />
+      </Funnel.Step>
+      <Funnel.Step name="학년반">
+        <GradeAndClass
+          next={(values) =>
+            setState((prevState) => ({
+              ...prevState,
+              step: "닉네임",
+              grade: values.grade,
+              clss: values.class,
+            }))
           }
         />
       </Funnel.Step>

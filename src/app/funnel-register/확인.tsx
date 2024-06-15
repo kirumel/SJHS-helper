@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import gsap from "gsap";
 
 export default function StartRegister(props: any) {
-  const { email, password, name, nickname, id } = props;
+  const { email, password, name, nickname, id, clss, grade } = props;
   const [showPassword, setShowPassword] = useState(false);
   const [buttonComment, setButtonComment] = useState("");
   const [stage, setStage] = useState(1);
@@ -158,6 +158,10 @@ export default function StartRegister(props: any) {
                     justifyContent: "space-between",
                   }}
                 >
+                  <p className="subtitlewhite margin0">학년</p>
+                  <p className="margintop0">{grade}</p>
+                  <p className="subtitlewhite margin0">반</p>
+                  <p className="margintop0">{clss}</p>
                   <p className="subtitlewhite margin0">닉네임</p>
                   <p className="margintop0">{nickname}</p>
                   <p className="subtitlewhite margin0">id</p>
