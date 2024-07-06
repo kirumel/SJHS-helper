@@ -86,6 +86,9 @@ html {
   .navout {
     display: none;
   }
+  .dish-group {
+    margin-left: 10px;
+  }
 }
 @media screen and (max-width: 750px) {
   .sidenav {
@@ -94,6 +97,7 @@ html {
 
   .main-content {
     transition: all 3.5s;
+    margin-bottom: 7vh;
   }
 }
 .sidenavout {

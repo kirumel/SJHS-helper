@@ -39,3 +39,42 @@ body {
   display: block;
   height: 2rem;
 }
+.graph-title {
+  margin: 0;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+}
+.graph-day {
+  margin: 0;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 25px;
+  font-weight: 600;
+  color: white;
+}
+.graph-title-blue {
+  background-color: rgb(138, 156, 255);
+  width: 200px;
+  border-radius: 1rem;
+  margin-bottom: 20px;
+  padding: 0.5rem;
+  padding-left: 1rem;
+  box-sizing: border-box;
+}
+.graph-display {
+  display: flex;
+  align-content: space-between;
+  flex-direction: column;
+}
+.graph {
+  max-height: 70vh;
+  width: 100%;
+  display: flex;
+  justify-content: right;
+  background-color: white;
+  border-radius: 0.8rem;
+  padding: 1rem;
+  border: 0.1px solid rgb(195, 195, 195, 0.5);
+  box-shadow: rgb(123, 123, 123, 0.2) 0px 1px 3px;
+}

@@ -5,6 +5,7 @@ import maintaps from "./maintabs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Hello from "./hellohome";
 import "./style.css";
+import Graph from "./graph";
 
 export default async function home() {
   return (
@@ -105,7 +106,7 @@ export default async function home() {
         </div>
         <div className="line"></div>
         <div className="main-container">
-          <p className="home-title">교내 행사 및 홍보</p>
+          <p className="home-title">급식 및 시간표</p>
           <div className="main-container-display">
             <div className="main-container-50">
               <div className="etc-container ">
@@ -135,6 +136,21 @@ export default async function home() {
                 </Link>
                 <Homeschedule />
               </div>
+            </div>
+          </div>
+        </div>
+        <div className="line"></div>
+        <div className="main-container">
+          <div className="graph-display">
+            <div className="graph-title-blue">
+              <div>
+                <p className="graph-title">시험일까지</p>
+                <p className="graph-day">D-3</p>
+              </div>
+            </div>
+
+            <div className="graph">
+              <Graph />
             </div>
           </div>
         </div>
