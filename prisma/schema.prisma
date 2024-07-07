@@ -31,7 +31,14 @@ model SJHSUser {
   handle            String?
   verificationToken String?
 }
-
+model attendanceObject {
+  id                String   @id @default(cuid())
+  name              String?
+  createdAt         DateTime @default(now())
+  check             Boolean?
+  comment           String?
+  author            String
+}
 model User {
   id            String    @id @default(cuid())
   name          String?

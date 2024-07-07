@@ -148,8 +148,8 @@ export default async function home() {
                 <p className="graph-day">D-3</p>
               </div>
             </div>
-
             <div className="graph">
+              <p className="home-title">성적 평균 그래프</p>
               <Graph />
             </div>
           </div>

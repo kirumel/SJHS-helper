@@ -16,10 +16,10 @@ export default function Meals() {
 
   useEffect(() => {
     async function fetchMeals() {
-      setIsLoading(true); 
+      setIsLoading(true);
       const mealsData = await getMeal();
       setMeals(mealsData);
-      setIsLoading(false); 
+      setIsLoading(false);
     }
     fetchMeals();
   }, []);

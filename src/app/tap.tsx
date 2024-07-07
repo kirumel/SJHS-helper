@@ -4,7 +4,6 @@ import {
   faHome,
   faUserCircle,
   faCalendarDays,
-  faClock,
 } from "@fortawesome/free-solid-svg-icons";
 
 const tabs = [
@@ -24,14 +23,9 @@ const tabs = [
     label: "시간표",
   },
   {
-    route: "/timer",
-    icon: faClock,
-    label: "타이머",
-  },
-  {
     route: "/cafe",
-    icon: faClock,
-    label: "게시판",
+    icon: faBowlFood,
+    label: "커뮤니티",
   },
   {
     route: "/setting",

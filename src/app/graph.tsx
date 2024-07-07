@@ -10,7 +10,6 @@ import {
   Tooltip,
   Filler,
   Legend,
-  scales,
 } from "chart.js";
 
 ChartJS.register(
@@ -25,9 +24,23 @@ ChartJS.register(
 
 export const options = {
   responsive: true,
+  indexAxis: "y" as const, // 타입을 명시적으로 지정
   plugins: {
     legend: {
       display: false,
+    },
+  },
+  scales: {
+    x: {
+      max: 100, // x축의 최대값을 100으로 설정
+      grid: {
+        display: false, // x축의 그리드를 제거
+      },
+    },
+    y: {
+      grid: {
+        display: false, // y축의 그리드를 제거
+      },
     },
   },
 };
@@ -39,9 +52,9 @@ const LineChart = () => {
       {
         fill: true,
         label: "",
-        backgroundColor: "rgba(138, 156, 255)",
+        backgroundColor: "rgba(138, 156, 255)", // 가시성을 위해 투명도를 조정했습니다
         borderColor: "#8a9bff",
-        borderRadius: 10,
+        borderRadius: 10, // 양쪽 모두 둥글게 설정
         data: [89, 88, 65, 73],
       },
     ],
