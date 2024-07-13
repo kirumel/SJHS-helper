@@ -82,6 +82,8 @@ export const authOptions = {
           role: user.role,
           grade: user.grade,
           class: user.class,
+          nickname: user.nickname,
+          handle: user.handle,
         };
       }
       return token;

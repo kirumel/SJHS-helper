@@ -1,5 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../../../pages/api/auth/[...nextauth]";
 
 interface Attendance {
   name: string;
@@ -8,7 +10,7 @@ interface Attendance {
   author: string;
 }
 
-export default function Page() {
+export default async function Page() {
   const [attendance, setAttendance] = useState<Attendance[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [modalOpen, setModalOpen] = useState(false);
@@ -42,6 +44,14 @@ export default function Page() {
         setIsLoading(false);
       });
   }, []);
+
+  const session = await getServerSession({
+    ...authOptions,
+    session: {
+      ...authOptions.session,
+      strategy: "jwt",
+    },
+  });
 
   if (attendance.length === 0) {
     return (

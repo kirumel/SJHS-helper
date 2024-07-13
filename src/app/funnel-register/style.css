@@ -42,23 +42,6 @@ a {
   text-decoration: none;
 }
 
-.ok-button {
-  color: white;
-  background-color: rgb(138, 156, 255);
-  height: 60px;
-  width: 100%;
-  border-radius: 20px;
-  padding: 10px;
-  border: 0px;
-  font-family: "Noto Sans KR", sans-serif;
-  font-weight: 600;
-  transition: all 0.5s;
-}
-.ok-button:disabled {
-  background-color: rgba(22, 24, 31, 0.5);
-  transition: all 0.5s;
-}
-
 .start-register-title {
   margin: 0;
   font-weight: 700;
