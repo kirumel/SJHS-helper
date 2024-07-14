@@ -1,21 +1,37 @@
 "use client";
 import { useState, useEffect } from "react";
-import { getServerSession } from "next-auth";
-import { authOptions } from "../../../pages/api/auth/[...nextauth]";
+import { useSession } from "next-auth/react";
+import "./style.css";
 
 interface Attendance {
   name: string;
   content: string;
   check: boolean;
   author: string;
+  grade: string;
+  class: string;
+  studentnumber: string;
 }
 
-export default async function Page() {
+export default function Page() {
   const [attendance, setAttendance] = useState<Attendance[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedCount, setSelectedCount] = useState<number>(1);
   const [conformselectedCount, conformsetSelectedCount] = useState<number>(1);
+  const [studentData, setStudentData] = useState<
+    { name: string; grade: string; clss: string; studentnumber: string }[]
+  >([]);
+
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setIsChecked(event.target.checked);
+  };
+
+  console.log(studentData);
+
+  const { data: session } = useSession();
 
   const openModal = () => {
     setModalOpen(true);
@@ -25,16 +41,57 @@ export default async function Page() {
     setModalOpen(false);
   };
 
-  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleSelectChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     conformsetSelectedCount(parseInt(e.target.value));
   };
 
   const handleconformcount = () => {
     if (isNaN(conformselectedCount)) {
       setSelectedCount(1);
+    } else {
+      setSelectedCount(conformselectedCount);
+      setStudentData(
+        Array.from({ length: conformselectedCount }, () => ({
+          name: "",
+          grade: session?.user?.grade || "",
+          clss: session?.user?.class || "",
+          studentnumber: "",
+        }))
+      );
     }
-    setSelectedCount(conformselectedCount);
   };
+
+  const handleInputChange = (index: number, field: string, value: string) => {
+    const newData = [...studentData];
+    newData[index] = { ...newData[index], [field]: value };
+    setStudentData(newData);
+  };
+
+  const handleSubmit = () => {
+    fetch("/api/post/attendance", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(studentData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        closeModal();
+        setIsLoading(true);
+        fetch("/api/post/attendance")
+          .then((response) => response.json())
+          .then((data: Attendance[]) => {
+            setAttendance(data);
+            setIsLoading(false);
+          });
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+
   useEffect(() => {
     setIsLoading(true);
     fetch("/api/post/attendance")
@@ -45,13 +102,9 @@ export default async function Page() {
       });
   }, []);
 
-  const session = await getServerSession({
-    ...authOptions,
-    session: {
-      ...authOptions.session,
-      strategy: "jwt",
-    },
-  });
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   if (attendance.length === 0) {
     return (
@@ -65,25 +118,155 @@ export default async function Page() {
                 &times;
               </span>
               <p>인원을 입력해주세요</p>
-              <button onClick={handleconformcount}>확인</button>
               <input
                 type="text"
                 placeholder="인원"
                 onChange={handleSelectChange}
               />
-              {[...Array(selectedCount)].map((_, index) => (
-                <div key={index} className="input-group">
-                  <input type="text" placeholder="이름" />
-                  <input type="text" placeholder="학년" />
-                  <input type="text" placeholder="번호" />
-                </div>
-              ))}
+              <button onClick={handleconformcount}>인원 추가</button>
+              <div className="scroll-container-attendance">
+                {[...Array(selectedCount)].map((_, index) => (
+                  <div key={index} className="input-group">
+                    <input
+                      type="text"
+                      placeholder="이름"
+                      value={studentData[index]?.name || ""}
+                      onChange={(e) =>
+                        handleInputChange(index, "name", e.target.value)
+                      }
+                    />
+                    <input
+                      type="text"
+                      value={studentData[index]?.grade || ""}
+                      placeholder="학년"
+                      onChange={(e) =>
+                        handleInputChange(index, "grade", e.target.value)
+                      }
+                    />
+                    <input
+                      type="text"
+                      value={studentData[index]?.clss || ""}
+                      placeholder="반"
+                      onChange={(e) =>
+                        handleInputChange(index, "clss", e.target.value)
+                      }
+                    />
+                    <input
+                      type="text"
+                      value={studentData[index]?.studentnumber || ""}
+                      placeholder="번호"
+                      onChange={(e) =>
+                        handleInputChange(
+                          index,
+                          "studentnumber",
+                          e.target.value
+                        )
+                      }
+                    />
+                  </div>
+                ))}
+              </div>
+              <button onClick={handleSubmit}>확인</button>
             </div>
           </div>
         )}
       </>
     );
   } else {
-    return <div>{/* 실제 데이터 표시 */}</div>;
+    return (
+      <>
+        <div>
+          <div className="attendance-container">
+            <button onClick={openModal}>학생 추가</button>
+            <button>선택항목 일괄 옵션적용</button>
+            {attendance.map((data, i) => (
+              <div className="attendance-student" key={i}>
+                <input type="checkbox"></input>
+                <p>{data.name}</p>
+                <p>{data.grade}학년</p>
+                <p>{data.class}반</p>
+                <p>{data.studentnumber}번</p>
+                <input type="text" placeholder="미출석 사유"></input>
+                <input
+                  type="checkbox"
+                  name="n"
+                  checked={isChecked}
+                  onChange={handleCheckboxChange}
+                ></input>
+                <input
+                  type="checkbox"
+                  name="y"
+                  checked={isChecked}
+                  onChange={handleCheckboxChange}
+                ></input>
+              </div>
+            ))}
+          </div>
+        </div>
+        {modalOpen && (
+          <div className="modal">
+            <div className="modal-content">
+              <span className="close" onClick={closeModal}>
+                &times;
+              </span>
+              <p>인원을 입력해주세요</p>
+              <input
+                type="text"
+                placeholder="인원"
+                onChange={handleSelectChange}
+              />
+              <button onClick={handleconformcount}>인원 추가</button>
+              <div className="scroll-container-attendance">
+                {[...Array(selectedCount)].map((_, index) => (
+                  <div key={index} className="input-group">
+                    <input
+                      type="text"
+                      placeholder="이름"
+                      value={studentData[index]?.name || ""}
+                      onChange={(e) =>
+                        handleInputChange(index, "name", e.target.value)
+                      }
+                    />
+                    <input
+                      type="text"
+                      value={studentData[index]?.grade || ""}
+                      placeholder="학년"
+                      onChange={(e) =>
+                        handleInputChange(index, "grade", e.target.value)
+                      }
+                    />
+                    <input
+                      type="text"
+                      value={studentData[index]?.clss || ""}
+                      placeholder="반"
+                      onChange={(e) =>
+                        handleInputChange(index, "clss", e.target.value)
+                      }
+                    />
+                    <input
+                      type="text"
+                      value={studentData[index]?.studentnumber || ""}
+                      placeholder="번호"
+                      onChange={(e) =>
+                        handleInputChange(
+                          index,
+                          "studentnumber",
+                          e.target.value
+                        )
+                      }
+                    />
+                  </div>
+                ))}
+              </div>
+              <button onClick={handleSubmit}>확인</button>
+            </div>
+          </div>
+        )}
+
+        <button className="ok-button" onClick={openModal}>
+          출석 정보 저장
+        </button>
+      </>
+    );
   }
 }

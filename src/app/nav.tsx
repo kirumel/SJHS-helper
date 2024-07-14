@@ -8,9 +8,9 @@ export default function Nav() {
   return (
     <>
       <div className="nav">
-        <a href="/">
+        <Link href="/">
           <Image src={logo} alt="logo" width={71} height={25} />
-        </a>
+        </Link>
       </div>
     </>
   );

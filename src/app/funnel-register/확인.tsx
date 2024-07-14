@@ -232,6 +232,18 @@ export default function StartRegister(props: any) {
                 placeholder="id"
                 value={id}
               />
+              <input
+                style={{ display: "none" }}
+                name="grade"
+                placeholder="학년"
+                value={grade}
+              />
+              <input
+                style={{ display: "none" }}
+                name="class"
+                placeholder="반"
+                value={clss}
+              />
               <button
                 className="ok-button"
                 type="button"

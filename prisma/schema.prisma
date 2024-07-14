@@ -14,9 +14,13 @@ model UnverifiedUser {
   name      String
   nickname  String
   token     String   @unique
+  image             String?
+  role          String    @default("user")
   expires   DateTime
   createdAt DateTime @default(now())
   handle    String?
+  class         Int?
+  grade         Int?
 }
 
 model SJHSUser {
@@ -26,10 +30,13 @@ model SJHSUser {
   image             String?
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
+  role          String    @default("user")
   nickname          String?
   password          String?
   verificationToken String?
   handle            String?
+  class         Int?
+  grade         Int?
 }
 
 model attendanceObject {
@@ -38,7 +45,10 @@ model attendanceObject {
   createdAt DateTime @default(now())
   check     Boolean?
   comment   String?
-  author    String
+  author    String?
+  grade     Int?
+  class     Int?
+  studentnumber Int?
 }
 
 model User {
@@ -88,14 +98,14 @@ model Session {
 }
 
 model Post {
-  id        Int      @id @default(autoincrement())
-  author    String?
-  nickname  String?
-  title     String
-  content   String
-  createdAt DateTime @default(now()) @db.Timestamptz(6)
-  image     String?
-  video     String?
-  like      Int?      @default(0)
-  likeAuthorId String[]
+  id           Int      @id @default(autoincrement())
+  author       String?
+  nickname     String?
+  title        String
+  content      String
+  createdAt    DateTime @default(now()) @db.Timestamptz(6)
+  image        String?
+  like         Int?     @default(0)
+  video        String?
+  likeAuthorId String[] @default([])
 }

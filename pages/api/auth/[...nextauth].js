@@ -84,6 +84,7 @@ export const authOptions = {
           class: user.class,
           nickname: user.nickname,
           handle: user.handle,
+          id: user.id,
         };
       }
       return token;

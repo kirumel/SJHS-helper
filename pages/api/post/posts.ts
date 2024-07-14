@@ -44,13 +44,15 @@ export default async function handler(req: any, res: any) {
     }
   } else if (req.method === "PATCH") {
     try {
-      const { id, like } = req.body;
+      const { id, like, likeAuthorId } = req.body;
+
       const post = await prisma.post.update({
         where: {
           id: id,
         },
         data: {
           like: like,
+          likeAuthorId: [likeAuthorId],
         },
       });
       res.status(201).json({ message: "성공", post });
