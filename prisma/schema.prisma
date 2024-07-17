@@ -14,13 +14,13 @@ model UnverifiedUser {
   name      String
   nickname  String
   token     String   @unique
-  image             String?
-  role          String    @default("user")
   expires   DateTime
   createdAt DateTime @default(now())
   handle    String?
-  class         Int?
-  grade         Int?
+  class     Int?
+  grade     Int?
+  image     String?
+  role      String   @default("user")
 }
 
 model SJHSUser {
@@ -30,24 +30,24 @@ model SJHSUser {
   image             String?
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
-  role          String    @default("user")
   nickname          String?
   password          String?
   verificationToken String?
   handle            String?
-  class         Int?
-  grade         Int?
+  class             Int?
+  grade             Int?
+  role              String   @default("user")
 }
 
 model attendanceObject {
-  id        String   @id @default(cuid())
-  name      String?
-  createdAt DateTime @default(now())
-  check     Boolean?
-  comment   String?
-  author    String?
-  grade     Int?
-  class     Int?
+  id            String   @id @default(cuid())
+  name          String?
+  createdAt     DateTime @default(now())
+  check         Boolean?
+  comment       String?
+  author        String?
+  class         Int?
+  grade         Int?
   studentnumber Int?
 }
 

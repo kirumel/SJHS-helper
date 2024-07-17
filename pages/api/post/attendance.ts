@@ -36,5 +36,22 @@ export default async function handler(req: any, res: any) {
     } catch (error) {
       res.status(500).json({ message: "ㄴㄴ" });
     }
+  } else if (req.method === "PATCH") {
+    try {
+      const { id, check, comment, author } = req.body;
+      console.log(req.body);
+      const post = await prisma.post.update({
+        where: {
+          id: id,
+        },
+        data: { check, comment, author },
+      });
+      res.status(201).json({ message: "성공", post });
+    } catch (error) {
+      console.error(error);
+      res
+        .status(500)
+        .json({ message: "오류가 발생했습니다 콘솔을 확인해주세요" });
+    }
   }
 }

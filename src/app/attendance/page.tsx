@@ -22,14 +22,13 @@ export default function Page() {
   const [studentData, setStudentData] = useState<
     { name: string; grade: string; clss: string; studentnumber: string }[]
   >([]);
-
-  const [isChecked, setIsChecked] = useState(false);
-
-  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setIsChecked(event.target.checked);
-  };
-
-  console.log(studentData);
+  const [firstcommitstudent, setfirstcommitstudent] = useState<
+    {
+      check: number; // 0 for 'n', 1 for 'y'
+      comment: string;
+      author: string;
+    }[]
+  >([]);
 
   const { data: session } = useSession();
 
@@ -58,6 +57,14 @@ export default function Page() {
           studentnumber: "",
         }))
       );
+
+      setfirstcommitstudent(
+        Array.from({ length: conformselectedCount }, () => ({
+          check: 0,
+          comment: "",
+          author: session?.user?.name || "",
+        }))
+      );
     }
   };
 
@@ -67,13 +74,31 @@ export default function Page() {
     setStudentData(newData);
   };
 
+  const handleCommitChange = (index: number, field: string, value: string) => {
+    const newData = [...firstcommitstudent];
+    newData[index] = { ...newData[index], [field]: value };
+    setfirstcommitstudent(newData);
+  };
+
+  const handleCheckboxChange = (
+    index: number,
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const newData = [...firstcommitstudent];
+    newData[index] = {
+      ...newData[index],
+      check: event.target.name === "n" ? 0 : 1,
+    };
+    setfirstcommitstudent(newData);
+  };
+
   const handleSubmit = () => {
     fetch("/api/post/attendance", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(studentData),
+      body: JSON.stringify({ studentData, firstcommitstudent }),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -92,6 +117,18 @@ export default function Page() {
       });
   };
 
+  const handlePatch = () => {
+    console.log(firstcommitstudent);
+    fetch("/api/post/attendance", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ firstcommitstudent }),
+    });
+  };
+
+  //처음 로딩
   useEffect(() => {
     setIsLoading(true);
     fetch("/api/post/attendance")
@@ -181,24 +218,35 @@ export default function Page() {
             <button>선택항목 일괄 옵션적용</button>
             {attendance.map((data, i) => (
               <div className="attendance-student" key={i}>
-                <input type="checkbox"></input>
+                <input
+                  type="checkbox"
+                  name="attendance-checkbox"
+                  onChange={(e) => handleCheckboxChange(i, e)}
+                />
                 <p>{data.name}</p>
                 <p>{data.grade}학년</p>
                 <p>{data.class}반</p>
                 <p>{data.studentnumber}번</p>
-                <input type="text" placeholder="미출석 사유"></input>
+                <input
+                  type="text"
+                  placeholder="미출석 사유"
+                  value={firstcommitstudent[i]?.comment || ""}
+                  onChange={(e) =>
+                    handleCommitChange(i, "comment", e.target.value)
+                  }
+                />
                 <input
                   type="checkbox"
                   name="n"
-                  checked={isChecked}
-                  onChange={handleCheckboxChange}
-                ></input>
+                  checked={firstcommitstudent[i]?.check === 0}
+                  onChange={(e) => handleCheckboxChange(i, e)}
+                />
                 <input
                   type="checkbox"
                   name="y"
-                  checked={isChecked}
-                  onChange={handleCheckboxChange}
-                ></input>
+                  checked={firstcommitstudent[i]?.check === 1}
+                  onChange={(e) => handleCheckboxChange(i, e)}
+                />
               </div>
             ))}
           </div>
@@ -263,7 +311,7 @@ export default function Page() {
           </div>
         )}
 
-        <button className="ok-button" onClick={openModal}>
+        <button className="ok-button" onClick={handlePatch}>
           출석 정보 저장
         </button>
       </>
